@@ -1,0 +1,14 @@
+﻿@model TannerG_DBProg_FinalProject.Models.State
+@{
+    ViewBag.Title = "Add a State";
+}
+
+<h2>Add State</h2>
+
+@using (Html.BeginForm("Upsert", "States", FormMethod.Post))
+{
+    @Html.TextBoxFor(s => s.StateCode, new { @class = "form-control", placeholder = "State Code" })
+    @Html.TextBoxFor(s => s.StateName, new { @class = "form-control", placeholder = "State Name" })
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}

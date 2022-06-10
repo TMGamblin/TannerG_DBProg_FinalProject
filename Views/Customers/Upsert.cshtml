@@ -1,0 +1,25 @@
+﻿@model TannerG_DBProg_FinalProject.Models.UpsertCustomerModel
+@{
+    ViewBag.Title = "Upsert a Customer";
+}
+
+<h2>Add Customer</h2>
+
+@using (Html.BeginForm("Upsert", "Customers", FormMethod.Post))
+{
+    @Html.HiddenFor(gm => gm.Customer.CustomerID)
+    @Html.TextBoxFor(gm => gm.Customer.Name, new { @class = "form-control", placeholder = "Name" })
+    @Html.TextBoxFor(gm => gm.Customer.Address, new { @class = "form-control", placeholder = "Address" })
+    @Html.TextBoxFor(gm => gm.Customer.City, new { @class = "form-control", placeholder = "City" })
+    @Html.TextBoxFor(gm => gm.Customer.ZipCode, new { @class = "form-control", placeholder = "Phone" })
+    
+    <select name="Customer.State" class="form-control">
+        @foreach (var state in Model.States)
+        {
+            <option value="@state.StateCode">@state.StateName</option>
+        }
+    </select>
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}
+

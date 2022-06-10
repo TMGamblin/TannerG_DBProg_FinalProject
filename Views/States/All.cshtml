@@ -1,0 +1,45 @@
+﻿@model List<TannerG_DBProg_FinalProject.Models.State>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All States</h2>
+
+<a href="/States/Upsert">Add New</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">State Code</th>
+            <th onclick="Sortable.Sort(1);">State Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var state in Model)
+        {
+            <tr>
+                <td>@state.StateCode</td>
+                <td>@state.StateName</td>
+                <td>
+                    <a href="/States/Upsert/@state.StateCode">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = "/States/All/";
+</script>
+
+

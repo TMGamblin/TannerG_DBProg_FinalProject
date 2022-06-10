@@ -1,0 +1,15 @@
+﻿@model TannerG_DBProg_FinalProject.Models.OrderOption
+@{
+    ViewBag.Title = "Upsert an Order Option";
+}
+
+<h2>Add Order Option</h2>
+
+@using (Html.BeginForm("Upsert", "OrderOptions", FormMethod.Post))
+{
+    @Html.TextBoxFor(o => o.SalesTaxRate, new { @class = "form-control", placeholder = "Sales Tax Rate" })
+    @Html.TextBoxFor(o => o.FirstBookShipCharge, new { @class = "form-control", placeholder = "First Book Ship Charge" })
+    @Html.TextBoxFor(o => o.AdditionalBookShipCharge, new { @class = "form-control", placeholder = "Additional Book Ship Charge" })
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}

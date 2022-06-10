@@ -1,0 +1,32 @@
+﻿@model TannerG_DBProg_FinalProject.Models.UpsertInvoiceLineItemModel
+@{
+    ViewBag.Title = "Upsert an Invoice Line Item";
+}
+
+<h2>Add Invoice Line Item</h2>
+
+@using (Html.BeginForm("Upsert", "InvoiceLineItems", FormMethod.Post))
+{
+    <select name="Invoice.InvoiceID" class="form-control">
+        @foreach (var invoice in Model.Invoices)
+        {
+           <option value="@invoice.InvoiceID">@invoice.InvoiceID</option>
+        }
+    </select>
+    <select name="Product.ProductCode" class="form-control">
+        @foreach (var product in Model.Products)
+        {
+            <option value="@product.ProductCode">@product.Description</option>
+        }
+    </select>
+    <select name="Product.ProductCode" class="form-control">
+        @foreach (var product in Model.Products)
+        {
+            <option value="@product.UnitPrice">@product.UnitPrice</option>
+        }
+    </select>
+    @Html.TextBoxFor(gm => gm.InvoiceLineItem.Quantity, new { @class = "form-control", placeholder = "Quantity" })
+    @Html.TextBoxFor(gm => gm.InvoiceLineItem.ItemTotal, new { @class = "form-control", placeholder = "Item Total" })
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}

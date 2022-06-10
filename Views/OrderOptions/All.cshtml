@@ -1,0 +1,46 @@
+﻿@model List<TannerG_DBProg_FinalProject.Models.OrderOption>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All Order Options</h2>
+
+<a href="/OrderOptions/Upsert/0">Add New</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Sales Tax Rate</th>
+            <th onclick="Sortable.Sort(1);">First Book Ship Charge</th>
+            <th onclick="Sortable.Sort(2);">Additional Book Ship Charge</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderOption in Model)
+        {
+            <tr>
+                <td>@orderOption.SalesTaxRate</td>
+                <td>@orderOption.FirstBookShipCharge</td>
+                <td>@orderOption.AdditionalBookShipCharge</td>
+                <td>
+                    <a href="/OrderOptions/Upsert/@orderOption.SalesTaxRate">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = "/OrderOptions/All/";
+</script>
+

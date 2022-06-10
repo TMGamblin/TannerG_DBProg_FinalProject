@@ -1,0 +1,16 @@
+﻿@model TannerG_DBProg_FinalProject.Models.Product
+@{
+    ViewBag.Title = "Upsert a Product";
+}
+
+<h2>Add Product</h2>
+
+@using (Html.BeginForm("Upsert", "Products", FormMethod.Post))
+{
+    @Html.TextBoxFor(p => p.ProductCode, new { @class = "form-control", placeholder = "Product Code" })
+    @Html.TextBoxFor(p => p.Description, new { @class = "form-control", placeholder = "Description" })
+    @Html.TextBoxFor(p => p.UnitPrice, new { @class = "form-control", placeholder = "Unit Price" })
+    @Html.TextBoxFor(p => p.OnHandQuantity, new { @class = "form-control", placeholder = "On Hand Quantity" })
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}

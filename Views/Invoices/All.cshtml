@@ -1,0 +1,47 @@
+﻿@model List<TannerG_DBProg_FinalProject.Models.Invoice>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All Invoices</h2>
+
+<a href="/Invoices/Upsert/0">Add New</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.search();" />
+    </div>
+</div>
+
+<table class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Invoice ID</th>
+            <th onclick="Sortable.Sort(1);">Customer ID</th>
+            <th onclick="Sortable.Sort(2);">Invoice Date</th>
+            <th onclick="Sortable.Sort(3);">Invoice Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td>@invoice.InvoiceID</td>
+                <td>@invoice.CustomerID</td>
+                <td>@invoice.InvoiceDate.ToLongDateString()</td>
+                <td>@invoice.InvoiceTotal</td>
+                <td>
+                    <a href="/Customers/Upsert/@invoice.InvoiceID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    Sortable.baseUrl = "/Invoices/All/";
+</script>

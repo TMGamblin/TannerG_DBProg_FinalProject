@@ -1,0 +1,25 @@
+﻿@model TannerG_DBProg_FinalProject.Models.UpsertInvoiceModel
+@{
+    ViewBag.Title = "Upsert an Invoice";
+}
+
+<h2>Add Invoice</h2>
+
+@using (Html.BeginForm("Upsert", "Invoices", FormMethod.Post))
+{
+    @Html.HiddenFor(gm => gm.Invoice.InvoiceID)
+    <select name="Invoice.CustomerID" class="form-control">
+        @foreach (var customer in Model.Customers)
+        {
+            <option value="@customer.CustomerID">@customer.Name</option>
+        }
+    </select>
+    @Html.TextBoxFor(gm => gm.Invoice.InvoiceDate, new { @class = "form-control", placeholder = "Date: Month Day, Year" })
+    @Html.TextBoxFor(gm => gm.Invoice.ProductTotal, new { @class = "form-control", placeholder = "Product Total" })
+    @Html.TextBoxFor(gm => gm.Invoice.SalesTax, new { @class = "form-control", placeholder = "SalesTax" })
+    @Html.TextBoxFor(gm => gm.Invoice.Shipping, new { @class = "form-control", placeholder = "Shipping" })
+    @Html.TextBoxFor(gm => gm.Invoice.InvoiceTotal, new { @class = "form-control", placeholder = "Invoice Total" })
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}
+
